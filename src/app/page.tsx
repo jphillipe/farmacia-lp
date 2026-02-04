@@ -1,4 +1,5 @@
 import { Header } from '@/components/header'
+import { AboutSection } from '@/components/sections/about/about'
 import { Hero } from '@/components/sections/hero/hero'
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
       <main>
         <Hero />
         <section className="container mx-auto px-4">
-          {/* outras seções com container */}
+          <AboutSection />
         </section>
       </main>
     </div>
