@@ -1,6 +1,7 @@
 import { Header } from '@/components/header'
 import { AboutSection } from '@/components/sections/about/about'
 import { Hero } from '@/components/sections/hero/hero'
+import { ProcessSection } from '@/components/sections/process/process'
 
 export default function Home() {
   return (
@@ -8,8 +9,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <section className="container mx-auto px-4">
+        <section className="mx-auto">
           <AboutSection />
+          <ProcessSection />
         </section>
       </main>
     </div>
