@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💊 Farmácia — Landing Page
 
-## Getting Started
+<p align="center">
+  <img src="public/favicon.svg" alt="Farmácia Logo" width="80" />
+</p>
 
-First, run the development server:
+<p align="center">
+  Landing page moderna para uma farmácia de manipulação fictícia
+</p>
+
+<p align="center">
+  <a href="https://farmacia-lp.vercel.app/pt"><strong>🔗 Ver Deploy</strong></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss" alt="Tailwind CSS" />
+</p>
+
+---
+
+## 📋 Sobre o Desafio
+
+O objetivo é transformar um layout de referência (Figma) em uma landing page funcional, responsiva e com boa experiência de usuário, utilizando tecnologias modernas de frontend.
+
+---
+
+## ✨ Funcionalidades
+
+- **Landing Page completa** com seções: Hero, Sobre, Processo, Produtos, Depoimentos, Contato e Footer
+- **Internacionalização (i18n)** — Português (PT-BR) e Espanhol (ES) com troca dinâmica
+- **Formulário de orçamento** com validação (Zod + React Hook Form), máscara de telefone e upload de arquivos
+- **API Route simulada** (`POST /api/orders`) com latência realista e retorno de ID do pedido
+- **Toast notifications** para feedback de sucesso/erro no envio
+- **Carousel interativo** no Hero e em Produtos (Embla Carousel)
+- **Animações suaves** com Framer Motion (fade, scale, stagger)
+- **Página 404 customizada** com suporte a i18n
+- **SEO otimizado** — Open Graph, Twitter Cards, JSON-LD (Schema.org), sitemap.xml, robots.txt
+- **Design responsivo** — Mobile-first com breakpoints para tablet e desktop
+- **Favicon customizado** — Cruz verde SVG com versões ICO e PNG
+
+---
+
+## 🛠️ Stack Técnica
+
+| Categoria | Tecnologia |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Linguagem | TypeScript 5 |
+| Estilização | Tailwind CSS 4 |
+| Componentes UI | Shadcn/UI + Radix UI |
+| Formulário | React Hook Form + Zod |
+| Animações | Framer Motion |
+| i18n | next-intl |
+| Ícones | Lucide React |
+| Linting | ESLint + Prettier + jsx-a11y |
+| Package Manager | pnpm |
+
+---
+
+## 🚀 Como Rodar
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clonar o repositório
+git clone https://github.com/seu-usuario/desafio.git
+cd desafio
+
+# Instalar dependências
+pnpm install
+
+# Rodar em desenvolvimento
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Estrutura do Projeto
 
-## Learn More
+```
+src/
+├── app/
+│   ├── api/orders/         # API Route (simulação de backend)
+│   ├── [locale]/           # Rotas com i18n (PT/ES)
+│   │   ├── layout.tsx      # Layout com metadata SEO + i18n provider
+│   │   ├── page.tsx        # Página principal + JSON-LD
+│   │   ├── not-found.tsx   # 404 traduzido
+│   │   └── [...rest]/      # Catch-all para 404
+│   ├── robots.ts           # Geração dinâmica de robots.txt
+│   └── sitemap.ts          # Geração dinâmica de sitemap.xml
+├── components/
+│   ├── header.tsx          # Header sticky com troca de idioma
+│   ├── footer.tsx          # Footer com links
+│   ├── sections/           # Seções da landing page
+│   │   ├── hero/
+│   │   ├── about/
+│   │   ├── process/
+│   │   ├── products/
+│   │   ├── testimonials/
+│   │   └── contact/        # Formulário com validação
+│   └── ui/                 # Componentes Shadcn/UI
+├── i18n/                   # Configuração next-intl
+├── lib/                    # Utilitários (cn, JSON-LD)
+└── assets/images/          # Imagens estáticas
+messages/
+├── pt.json                 # Traduções Português
+└── es.json                 # Traduções Espanhol
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 Scripts Disponíveis
 
-## Deploy on Vercel
+| Comando | Descrição |
+|---|---|
+| `pnpm dev` | Inicia o servidor de desenvolvimento |
+| `pnpm build` | Gera build de produção |
+| `pnpm start` | Inicia o servidor de produção |
+| `pnpm lint` | Executa o ESLint |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<p align="center">
+  Feito com 💚 por João Phillipe Fernandes
+</p>
