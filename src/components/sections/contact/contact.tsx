@@ -60,7 +60,7 @@ export function ContactSection() {
   }
 
   return (
-    <section className="w-full bg-white py-16 md:py-24">
+    <section id="orcamento" className="w-full bg-white py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">

@@ -27,6 +27,13 @@ export function Header() {
     })
   }
 
+  const scrollToForm = () => {
+    const element = document.getElementById('orcamento')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto flex h-14 items-center justify-between px-4 md:px-6">
@@ -38,7 +45,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-5 md:flex">
             <Button
               variant="ghost"
               size="icon"
@@ -58,9 +65,8 @@ export function Header() {
               className={locale === 'pt' ? 'border-2 border-primary' : ''}
             >
               <Flag code="BR" style={{ width: '200px', height: '16px' }} />
-              <span className="font-bold text-xs text-[#059669]">PT</span>
             </Button>
-            <Button className="font-bold rounded-full">
+            <Button className="font-bold rounded-full" onClick={scrollToForm}>
               <ClipboardList className="mr-2 h-4 w-4" />
               {t('requestQuote')}
             </Button>
@@ -118,7 +124,7 @@ export function Header() {
                     </Button>
                   </div>
                 </div>
-                <Button className="w-full font-bold">
+                <Button className="w-full font-bold" onClick={scrollToForm}>
                   <ClipboardList className="mr-2 h-4 w-4" />
                   {t('requestQuote')}
                 </Button>
