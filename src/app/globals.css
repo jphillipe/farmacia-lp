@@ -120,6 +120,7 @@
 @theme {
   --color-primary: #10B981;
   --font-montserrat: var(--font-montserrat);
+  --font-inter: var(--font-inter);
 }
 
 @layer base {

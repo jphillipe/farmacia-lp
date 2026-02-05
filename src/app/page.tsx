@@ -3,6 +3,7 @@ import { AboutSection } from '@/components/sections/about/about'
 import { Hero } from '@/components/sections/hero/hero'
 import { ProcessSection } from '@/components/sections/process/process'
 import { ProductsSection } from '@/components/sections/products/products'
+import { TestimonialsSection } from '@/components/sections/testimonials/testimonials'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           <AboutSection />
           <ProcessSection />
           <ProductsSection />
+          <TestimonialsSection />
         </section>
       </main>
     </div>

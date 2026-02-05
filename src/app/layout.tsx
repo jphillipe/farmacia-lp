@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Montserrat } from 'next/font/google'
+import { Montserrat, Inter } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: 'Farmácia',
@@ -14,6 +14,13 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 })
 
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${montserrat.variable} font-montserrat antialiased`}>
+      <body
+        className={`${montserrat.variable} ${inter.variable} font-montserrat antialiased`}
+      >
         {children}
       </body>
     </html>
