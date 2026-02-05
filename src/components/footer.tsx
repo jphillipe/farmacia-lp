@@ -10,10 +10,10 @@ export function Footer() {
   const t = useTranslations('footer')
 
   const links = [
-    t('ourDNA'),
-    t('products'),
-    t('orders'),
-    t('laboratories'),
+    { label: t('ourDNA'), href: '/dna' },
+    { label: t('products'), href: '/produtos' },
+    { label: t('orders'), href: '/pedidos' },
+    { label: t('laboratories'), href: '/laboratorios' },
   ]
 
   return (
@@ -71,17 +71,15 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="text-white font-bold text-lg">{t('quickLinks')}</h3>
             <nav className="flex flex-col gap-4">
-              {links.map(
-                (item) => (
-                  <Link
-                    key={item}
-                    href="#"
-                    className="text-gray-400 hover:text-primary transition-colors text-sm font-medium"
-                  >
-                    {item}
-                  </Link>
-                ),
-              )}
+              {links.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-gray-400 hover:text-primary transition-colors text-sm font-medium"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </nav>
           </div>
         </div>
@@ -92,10 +90,13 @@ export function Footer() {
           <p>{t('copyright')}</p>
 
           <div className="flex gap-8">
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link
+              href="/privacidade"
+              className="hover:text-white transition-colors"
+            >
               {t('privacyPolicy')}
             </Link>
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="/termos" className="hover:text-white transition-colors">
               {t('termsOfService')}
             </Link>
           </div>

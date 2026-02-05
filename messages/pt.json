@@ -114,5 +114,11 @@
     "copyright": "FARMÁCIA 2026 © Todos os direitos reservados.",
     "privacyPolicy": "Políticas de Privacidade",
     "termsOfService": "Termos de Serviço"
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Página não encontrada",
+    "description": "Parece que a página que você está procurando não existe ou foi movida para outro endereço.",
+    "backHome": "Voltar ao Início"
   }
 }
