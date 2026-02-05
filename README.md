@@ -8,7 +8,7 @@
   Landing page moderna para uma farmácia de manipulação fictícia
 </p>
 
-[**🔗 Ver Deploy**](https://farmacia-lp.vercel.app/pt)
+<a href="https://farmacia-lp.vercel.app/pt" target="_blank"><strong>🔗 Ver Deploy</strong></a>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js" />
