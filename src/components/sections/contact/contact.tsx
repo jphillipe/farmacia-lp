@@ -16,22 +16,22 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import formsBg from '@/assets/images/forms.png'
-
-const formSchema = z.object({
-  name: z.string().min(2, 'O nome deve ter pelo menos 2 caracteres.'),
-  phone: z
-    .string()
-    .min(10, 'Informe um telefone válido.')
-    .regex(
-      /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/,
-      'Formato inválido. Use (XX) XXXXX-XXXX',
-    ),
-  email: z.string().email('Informe um e-mail válido.'),
-  files: z.any().optional(),
-  observation: z.string().optional(),
-})
+import { useTranslations } from 'next-intl'
 
 export function ContactSection() {
+  const t = useTranslations('contact')
+
+  const formSchema = z.object({
+    name: z.string().min(2, t('validation.nameMinLength')),
+    phone: z
+      .string()
+      .min(10, t('validation.phoneMinLength'))
+      .regex(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/, t('validation.phoneFormat')),
+    email: z.email(t('validation.emailInvalid')),
+    files: z.any().optional(),
+    observation: z.string().optional(),
+  })
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -64,14 +64,13 @@ export function ContactSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
-            Orçamento Online
+            {t('title')}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Solicitar Orçamento.
+            {t('heading')}
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Envie-nos suas receitas (pode anexar várias) ou consulta e nossa
-            equipe farmacêutica responderá.
+            {t('description')}
           </p>
         </div>
 
@@ -80,7 +79,7 @@ export function ContactSection() {
             <div className="flex items-center gap-2 mb-6">
               <FileText className="text-primary h-5 w-5" />
               <h3 className="font-bold text-xl text-foreground">
-                Dados do Pedido
+                {t('orderData')}
               </h3>
             </div>
 
@@ -94,11 +93,11 @@ export function ContactSection() {
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
                         <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                          Nome Completo
+                          {t('fullName')}
                         </FieldLabel>
                         <Input
                           {...field}
-                          placeholder="Seu nome"
+                          placeholder={t('fullName')}
                           className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                         {fieldState.error && (
@@ -115,7 +114,7 @@ export function ContactSection() {
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
                         <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                          WhatsApp / Celular
+                          {t('phone')}
                         </FieldLabel>
                         <Input
                           {...field}
@@ -142,12 +141,12 @@ export function ContactSection() {
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                        E-mail
+                        {t('email')}
                       </FieldLabel>
                       <Input
                         {...field}
                         type="email"
-                        placeholder="seu@email.com"
+                        placeholder={t('email')}
                         className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
                       />
                       {fieldState.error && (
@@ -167,7 +166,7 @@ export function ContactSection() {
                   }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                        Anexar Receitas
+                        {t('attachFiles')}
                       </FieldLabel>
 
                       <div className="relative group">
@@ -209,11 +208,11 @@ export function ContactSection() {
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                        Observações
+                        {t('observations')}
                       </FieldLabel>
                       <Textarea
                         {...field}
-                        placeholder="Alguma observação especial sobre seu pedido?"
+                        placeholder={t('observationsPlaceholder')}
                         className="bg-[#F9FAFB] border-none min-h-25 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
                       />
                       {fieldState.error && (
@@ -229,13 +228,13 @@ export function ContactSection() {
                 className="w-full h-12 text-base font-bold uppercase tracking-wide"
                 size="lg"
               >
-                Solicitar Orçamento
+                {t('send')}
                 <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
           </div>
 
-          <div className="lg:col-span-5 relative bg-[#7C5A2B] text-white p-8 md:p-12 flex flex-col justify-center min-h-[500px]">
+          <div className="lg:col-span-5 relative bg-[#7C5A2B] text-white p-8 md:p-12 flex flex-col justify-center min-h-125">
             <div className="absolute inset-0 z-0">
               <Image
                 src={formsBg}
@@ -248,7 +247,7 @@ export function ContactSection() {
 
             <div className="relative z-10 space-y-10">
               <h3 className="font-bold text-2xl text-white">
-                Canais de Atendimento
+                {t('contactInfo')}
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -257,12 +256,12 @@ export function ContactSection() {
                   </div>
                   <div className="space-y-1">
                     <h4 className="font-bold text-sm text-white uppercase">
-                      Localização
+                      {t('locationLabel')}
                     </h4>
                     <p className="text-sm text-white/80 leading-relaxed">
-                      Rua Fictícia 123, Zona Central.
+                      {t('address')}
                       <br />
-                      Cidade Modelo, Estado.
+                      {t('city')}
                     </p>
                   </div>
                 </div>
@@ -273,7 +272,7 @@ export function ContactSection() {
                   </div>
                   <div className="space-y-1">
                     <h4 className="font-bold text-sm text-white uppercase">
-                      WhatsApp Central
+                      {t('phoneLabel')}
                     </h4>
                     <p className="text-sm text-white/80">+55 (11) 99999-9999</p>
                   </div>
@@ -285,7 +284,7 @@ export function ContactSection() {
                   </div>
                   <div className="space-y-1">
                     <h4 className="font-bold text-sm text-white uppercase">
-                      Consultas Técnicas
+                      {t('emailLabel')}
                     </h4>
                     <p className="text-sm text-white/80">
                       laboratorio@email.com

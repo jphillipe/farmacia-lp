@@ -9,29 +9,31 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
-
-const testimonials = [
-  {
-    id: 1,
-    text: 'Produtos de qualidade excepcional e atendimento humanizado. A equipe demonstra profundo conhecimento técnico e verdadeiro cuidado com cada paciente.',
-    author: 'RUBEN DARIO',
-    role: 'Nutricionista Clínico',
-  },
-  {
-    id: 2,
-    text: 'A qualidade dos produtos superou todas as minhas expectativas. O atendimento personalizado fez toda a diferença no meu tratamento.',
-    author: 'MARIA SILVA',
-    role: 'Cliente Recorrente',
-  },
-  {
-    id: 3,
-    text: 'Profissionalismo e competência. Recomendo fortemente a farmácia para quem busca manipulação de confiança e precisão.',
-    author: 'JOÃO SANTOS',
-    role: 'Médico Parceiro',
-  },
-]
+import { useTranslations } from 'next-intl'
 
 export function TestimonialsSection() {
+  const t = useTranslations('testimonials')
+
+  const testimonials = [
+    {
+      id: 1,
+      text: t('testimonial1.text'),
+      author: t('testimonial1.author'),
+      role: t('testimonial1.role'),
+    },
+    {
+      id: 2,
+      text: t('testimonial2.text'),
+      author: t('testimonial2.author'),
+      role: t('testimonial2.role'),
+    },
+    {
+      id: 3,
+      text: t('testimonial3.text'),
+      author: t('testimonial3.author'),
+      role: t('testimonial3.role'),
+    },
+  ]
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)

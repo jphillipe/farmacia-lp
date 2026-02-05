@@ -1,0 +1,118 @@
+{
+  "header": {
+    "requestQuote": "SOLICITAR ORÇAMENTO",
+    "menu": "Menu"
+  },
+  "hero": {
+    "pharmacy": "FARMÁCIA",
+    "laboratory": "LABORATÓRIO",
+    "qualityGuaranteed": "QUALIDADE GARANTIDA",
+    "advancedTechnology": "TECNOLOGIA AVANÇADA",
+    "qualityDescription": "Insumos selecionados e processos rigorosos para sua segurança.",
+    "technologyDescription": "Equipamentos de última geração para garantir precisão.",
+    "contact": "Contatar"
+  },
+  "about": {
+    "welcome": "Bem-vindos",
+    "healthPriority": "A saúde como prioridade.",
+    "aboutUs": "Sobre Nós",
+    "constantEvolution": "Acreditamos na busca constante pela evolução.",
+    "description": "Seu desejo de crescer e desenvolver-se é o motor que nos impulsiona. Na Farmácia, estamos aqui para acompanhá-lo nesta jornada, para ajudá-lo a descobrir todo o seu potencial.",
+    "ethics": "ÉTICA",
+    "science": "CIÊNCIA",
+    "care": "CUIDADO"
+  },
+  "process": {
+    "title": "Nosso Processo",
+    "heading": "Precisão em cada tratamento",
+    "description": "Descubra como transformamos insumos de alta pureza em soluções magistrais personalizadas. Nosso laboratório utiliza tecnologia de ponta.",
+    "certifiedMaterials": "Matérias-primas certificadas",
+    "highComplexityLabs": "Laboratórios de alta complexidade",
+    "qualityControl": "Controle de qualidade rigoroso",
+    "personalizedPrescription": "Prescrição personalizada",
+    "watchVideo": "Ver Vídeo Institucional"
+  },
+  "products": {
+    "title": "Produtos",
+    "heading": "Os mais pedidos.",
+    "viewAll": "Ver todos os produtos",
+    "immunity": "IMUNIDADE",
+    "digestion": "DIGESTÃO",
+    "enzymes": "ENZIMAS",
+    "personalized": "PERSONALIZADOS",
+    "vitamins": "VITAMINAS",
+    "wellmunep": {
+      "title": "Wellmunep",
+      "description": "Reforço imunológico de alta absorção para o dia a dia."
+    },
+    "adidao": {
+      "title": "AdiDAO",
+      "description": "Enzima específica para a degradação eficiente de histamina."
+    },
+    "formulas": {
+      "title": "Fórmulas Magistrais",
+      "description": "Sua prescrição médica tornada realidade com precisão exata."
+    },
+    "supplements": {
+      "title": "Suplementos Pro",
+      "description": "Otimização de performance com compostos selecionados."
+    },
+    "vitamComplex": {
+      "title": "VitaComplex",
+      "description": "Complexo vitamínico completo para energia e vitalidade."
+    }
+  },
+  "testimonials": {
+    "testimonial1": {
+      "text": "Produtos de qualidade excepcional e atendimento humanizado. A equipe demonstra profundo conhecimento técnico e verdadeiro cuidado com cada paciente.",
+      "author": "RUBEN DARIO",
+      "role": "Nutricionista Clínico"
+    },
+    "testimonial2": {
+      "text": "A qualidade dos produtos superou todas as minhas expectativas. O atendimento personalizado fez toda a diferença no meu tratamento.",
+      "author": "MARIA SILVA",
+      "role": "Cliente Recorrente"
+    },
+    "testimonial3": {
+      "text": "Profissionalismo e competência. Recomendo fortemente a farmácia para quem busca manipulação de confiança e precisão.",
+      "author": "JOÃO SANTOS",
+      "role": "Médico Parceiro"
+    }
+  },
+  "contact": {
+    "title": "Orçamento Online",
+    "heading": "Solicitar Orçamento.",
+    "description": "Envie-nos suas receitas (pode anexar várias) ou consulta e nossa equipe farmacêutica responderá.",
+    "orderData": "Dados do Pedido",
+    "fullName": "Nome Completo",
+    "phone": "Telefone",
+    "email": "E-mail",
+    "attachFiles": "Anexar Arquivos",
+    "observations": "Observações",
+    "observationsPlaceholder": "Informações adicionais ou dúvidas sobre sua receita...",
+    "send": "Enviar Pedido",
+    "contactInfo": "Informações de Contato",
+    "address": "Rua Exemplo, 123 - Centro",
+    "city": "São Paulo - SP",
+    "locationLabel": "Localização",
+    "phoneLabel": "Telefone",
+    "emailLabel": "E-mail",
+    "validation": {
+      "nameMinLength": "O nome deve ter pelo menos 2 caracteres.",
+      "phoneMinLength": "Informe um telefone válido.",
+      "phoneFormat": "Formato inválido. Use (XX) XXXXX-XXXX",
+      "emailInvalid": "Informe um e-mail válido."
+    }
+  },
+  "footer": {
+    "description": "Excelência em compostos magistrais e cuidado personalizado da saúde há mais de 20 anos.",
+    "quickLinks": "Links Rápidos",
+    "ourDNA": "Nosso DNA",
+    "products": "Produtos",
+    "orders": "Pedidos",
+    "laboratories": "Laboratórios",
+    "copyright": "FARMÁCIA 2026 © Todos os direitos reservados.",
+    "privacyPolicy": "Políticas de Privacidade",
+    "termsOfService": "Termos de Serviço"
+  }
+}

@@ -1,8 +1,20 @@
+'use client'
+
 import { Play } from 'lucide-react'
 import Image from 'next/image'
 import videoImage from '@/assets/images/video.png'
+import { useTranslations } from 'next-intl'
 
 export function ProcessSection() {
+  const t = useTranslations('process')
+
+  const items = [
+    t('certifiedMaterials'),
+    t('highComplexityLabs'),
+    t('qualityControl'),
+    t('personalizedPrescription'),
+  ]
+
   return (
     <section className="relative w-full bg-[#111827] py-16 md:py-24 overflow-hidden">
       <div
@@ -14,24 +26,17 @@ export function ProcessSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
-              Nosso Processo
+              {t('title')}
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              Precisão em cada tratamento
+              {t('heading')}
             </h2>
             <p className="text-gray-300 text-lg leading-7 tracking-normal max-w-xl">
-              Descubra como transformamos insumos de alta pureza em soluções
-              magistrais personalizadas. Nosso laboratório utiliza tecnologia de
-              ponta.
+              {t('description')}
             </p>
 
             <ul className="space-y-4 mt-6">
-              {[
-                'Matérias-primas certificadas',
-                'Laboratórios de alta complexidade',
-                'Controle de qualidade rigoroso',
-                'Prescrição personalizada',
-              ].map((item, index) => (
+              {items.map((item, index) => (
                 <li key={index} className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-primary shrink-0" />
                   <span className="text-gray-200 font-medium">{item}</span>
@@ -57,7 +62,7 @@ export function ProcessSection() {
 
             <div className="absolute bottom-3 left-3 lg:bottom-6 lg:left-6 bg-black/60 backdrop-blur-sm px-2 py-1 lg:px-4 lg:py-2 rounded-md border border-white/10">
               <span className="text-white text-xs lg:text-sm font-medium">
-                Ver Vídeo Institucional
+                {t('watchVideo')}
               </span>
             </div>
           </div>

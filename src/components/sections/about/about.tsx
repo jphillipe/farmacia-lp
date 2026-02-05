@@ -2,21 +2,7 @@
 
 import { ShieldCheck, Microscope, HeartPulse } from 'lucide-react'
 import { motion } from 'framer-motion'
-
-const features = [
-  {
-    icon: ShieldCheck,
-    label: 'ÉTICA',
-  },
-  {
-    icon: Microscope,
-    label: 'CIÊNCIA',
-  },
-  {
-    icon: HeartPulse,
-    label: 'CUIDADO',
-  },
-]
+import { useTranslations } from 'next-intl'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -54,6 +40,23 @@ const cardVariants = {
 }
 
 export function AboutSection() {
+  const t = useTranslations('about')
+
+  const features = [
+    {
+      icon: ShieldCheck,
+      label: t('ethics'),
+    },
+    {
+      icon: Microscope,
+      label: t('science'),
+    },
+    {
+      icon: HeartPulse,
+      label: t('care'),
+    },
+  ]
+
   return (
     <section className="w-full bg-white py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6">
@@ -68,13 +71,13 @@ export function AboutSection() {
             className="text-sm font-bold tracking-wide text-primary uppercase"
             variants={itemVariants}
           >
-            Bem-vindos
+            {t('welcome')}
           </motion.span>
           <motion.h2
             className="text-3xl md:text-5xl font-bold text-foreground"
             variants={itemVariants}
           >
-            A saúde como prioridade.
+            {t('healthPriority')}
           </motion.h2>
 
           <motion.div
@@ -94,21 +97,19 @@ export function AboutSection() {
             className="text-sm font-bold tracking-wide text-primary uppercase mb-4"
             variants={itemVariants}
           >
-            Sobre Nós
+            {t('aboutUs')}
           </motion.span>
           <motion.h3
             className="text-3xl md:text-3xl font-bold text-foreground  tracking-tight uppercase leading-tight mb-6"
             variants={itemVariants}
           >
-            Acreditamos na busca constante pela evolução.
+            {t('constantEvolution')}
           </motion.h3>
           <motion.p
             className="text-[#4B5563] text-lg text-center leading-7 tracking-normal mb-12"
             variants={itemVariants}
           >
-            Seu desejo de crescer e desenvolver-se é o motor que nos impulsiona.
-            Na Farmácia, estamos aqui para acompanhá-lo nesta jornada, para
-            ajudá-lo a descobrir todo o seu potencial.
+            {t('description')}
           </motion.p>
 
           <motion.div

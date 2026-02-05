@@ -14,26 +14,28 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import hero1 from '@/assets/images/hero-1.png'
 import hero2 from '@/assets/images/hero-2.jpg'
-
-const slides = [
-  {
-    id: 1,
-    category: 'FARMÁCIA',
-    title: 'QUALIDADE GARANTIDA',
-    description:
-      'Insumos selecionados e processos rigorosos para sua segurança.',
-    image: hero1,
-  },
-  {
-    id: 2,
-    category: 'LABORATÓRIO',
-    title: 'TECNOLOGIA AVANÇADA',
-    description: 'Equipamentos de última geração para garantir precisão.',
-    image: hero2,
-  },
-]
+import { useTranslations } from 'next-intl'
 
 export function Hero() {
+  const t = useTranslations('hero')
+
+  const slides = [
+    {
+      id: 1,
+      category: t('pharmacy'),
+      title: t('qualityGuaranteed'),
+      description: t('qualityDescription'),
+      image: hero1,
+    },
+    {
+      id: 2,
+      category: t('laboratory'),
+      title: t('advancedTechnology'),
+      description: t('technologyDescription'),
+      image: hero2,
+    },
+  ]
+
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
 
@@ -87,7 +89,7 @@ export function Hero() {
                         className="h-12 rounded-full px-8 text-sm font-bold uppercase tracking-wider md:text-base"
                         size="lg"
                       >
-                        Contatar
+                        {t('contact')}
                       </Button>
                     </div>
                   </div>
