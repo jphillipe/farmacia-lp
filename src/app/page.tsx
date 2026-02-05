@@ -1,5 +1,7 @@
+import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { AboutSection } from '@/components/sections/about/about'
+import { ContactSection } from '@/components/sections/contact/contact'
 import { Hero } from '@/components/sections/hero/hero'
 import { ProcessSection } from '@/components/sections/process/process'
 import { ProductsSection } from '@/components/sections/products/products'
@@ -16,8 +18,10 @@ export default function Home() {
           <ProcessSection />
           <ProductsSection />
           <TestimonialsSection />
+          <ContactSection />
         </section>
       </main>
+      <Footer />
     </div>
   )
 }
