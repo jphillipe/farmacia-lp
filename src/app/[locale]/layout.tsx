@@ -7,6 +7,8 @@ import { getMessages } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { Toaster } from '@/components/ui/sonner'
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://farmacia.com.br'
+
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
@@ -42,9 +44,78 @@ export async function generateMetadata({
     es: 'Excelencia en compuestos magistrales y cuidado personalizado de la salud',
   }
 
+  const keywords: Record<string, string[]> = {
+    pt: [
+      'farmácia de manipulação',
+      'fórmulas magistrais',
+      'suplementos',
+      'manipulação farmacêutica',
+      'farmácia online',
+      'saúde',
+      'medicamentos manipulados',
+    ],
+    es: [
+      'farmacia de manipulación',
+      'fórmulas magistrales',
+      'suplementos',
+      'manipulación farmacéutica',
+      'farmacia online',
+      'salud',
+      'medicamentos manipulados',
+    ],
+  }
+
   return {
-    title: titles[locale] || titles.pt,
+    title: {
+      default: titles[locale] || titles.pt,
+      template: '%s | Farmácia',
+    },
     description: descriptions[locale] || descriptions.pt,
+    keywords: keywords[locale] || keywords.pt,
+    authors: [{ name: 'Farmácia' }],
+    creator: 'Farmácia',
+    metadataBase: new URL(BASE_URL),
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        pt: `${BASE_URL}/pt`,
+        es: `${BASE_URL}/es`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: locale === 'pt' ? 'pt_BR' : 'es_ES',
+      alternateLocale: locale === 'pt' ? 'es_ES' : 'pt_BR',
+      url: `${BASE_URL}/${locale}`,
+      siteName: 'Farmácia',
+      title: titles[locale] || titles.pt,
+      description: descriptions[locale] || descriptions.pt,
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: titles[locale] || titles.pt,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titles[locale] || titles.pt,
+      description: descriptions[locale] || descriptions.pt,
+      images: ['/og-image.png'],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   }
 }
 

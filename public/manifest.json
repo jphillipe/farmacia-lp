@@ -1,0 +1,16 @@
+{
+  "name": "Farmácia",
+  "short_name": "Farmácia",
+  "description": "Excelência em compostos magistrais e cuidado personalizado da saúde",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#10B981",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
