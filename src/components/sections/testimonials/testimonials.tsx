@@ -102,7 +102,7 @@ export function TestimonialsSection() {
                     ? 'w-8 bg-primary'
                     : 'w-8 bg-gray-200 hover:bg-gray-300',
                 )}
-                aria-label={`Ir para depoimento ${index + 1}`}
+                aria-label={t('goToTestimonial', { index: index + 1 })}
               />
             ))}
           </div>

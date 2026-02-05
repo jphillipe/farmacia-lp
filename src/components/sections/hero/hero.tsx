@@ -117,7 +117,7 @@ export function Hero() {
                   ? 'w-12 bg-primary'
                   : 'w-6 bg-white/40 hover:bg-white/60',
               )}
-              aria-label={`Ir para slide ${index + 1}`}
+              aria-label={t('goToSlide', { index: index + 1 })}
             />
           ))}
         </div>

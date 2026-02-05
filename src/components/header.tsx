@@ -49,7 +49,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              aria-label="Espanhol"
+              aria-label={t('spanish')}
               onClick={() => changeLocale('es')}
               disabled={isPending}
               className={locale === 'es' ? 'border-2 border-primary' : ''}
@@ -59,7 +59,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              aria-label="Português"
+              aria-label={t('portuguese')}
               onClick={() => changeLocale('pt')}
               disabled={isPending}
               className={locale === 'pt' ? 'border-2 border-primary' : ''}
@@ -95,7 +95,7 @@ export function Header() {
                       className={`flex-1 gap-2 font-bold ${
                         locale === 'es' ? 'border-primary bg-primary/5' : ''
                       }`}
-                      aria-label="Espanhol"
+                      aria-label={t('spanish')}
                       onClick={() => changeLocale('es')}
                       disabled={isPending}
                     >
@@ -110,7 +110,7 @@ export function Header() {
                       className={`flex-1 gap-2 font-bold ${
                         locale === 'pt' ? 'border-primary bg-primary/5' : ''
                       }`}
-                      aria-label="Português"
+                      aria-label={t('portuguese')}
                       onClick={() => changeLocale('pt')}
                       disabled={isPending}
                     >

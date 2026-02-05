@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import formsBg from '@/assets/images/forms.png'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
 export function ContactSection() {
   const t = useTranslations('contact')
@@ -44,6 +45,10 @@ export function ContactSection() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log('Valores do formulário:', values)
+    toast.success(t('toast.title'), {
+      description: t('toast.description'),
+    })
+    form.reset()
   }
 
   const formatPhone = (value: string) => {
@@ -185,11 +190,11 @@ export function ContactSection() {
                           </div>
                           <span className="font-bold text-gray-700 text-sm">
                             {value && value.length > 0
-                              ? `${value.length} arquivo(s) selecionado(s)`
-                              : 'Adicionar receitas médicas'}
+                              ? t('filesSelected', { count: value.length })
+                              : t('addPrescriptions')}
                           </span>
                           <span className="text-xs text-gray-400 mt-1">
-                            JPG, PNG OU PDF (MÁX. 10MB)
+                            {t('fileFormats')}
                           </span>
                         </div>
                       </div>
@@ -238,7 +243,7 @@ export function ContactSection() {
             <div className="absolute inset-0 z-0">
               <Image
                 src={formsBg}
-                alt="Fundo atendimento"
+                alt={t('backgroundAlt')}
                 fill
                 className="object-cover mix-blend-overlay opacity-40"
               />
@@ -295,7 +300,7 @@ export function ContactSection() {
 
               <div className="bg-primary/10 backdrop-blur-md border border-primary/30 rounded-xl p-6 mt-8">
                 <p className="italic text-[#A7F3D0] text-sm leading-relaxed">
-                  {`"Comprometidos com a ética farmacêutica e a saúde de nossos pacientes."`}
+                  {`"${t('quote')}"`}
                 </p>
               </div>
             </div>

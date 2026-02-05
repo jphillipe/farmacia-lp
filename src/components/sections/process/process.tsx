@@ -1,5 +1,3 @@
-'use client'
-
 import { Play } from 'lucide-react'
 import Image from 'next/image'
 import videoImage from '@/assets/images/video.png'
@@ -48,7 +46,7 @@ export function ProcessSection() {
           <div className="relative w-full aspect-video bg-black/40 rounded-2xl border border-white/10 overflow-hidden group cursor-pointer">
             <Image
               src={videoImage}
-              alt="Vídeo Institucional"
+              alt={t('videoAlt')}
               fill
               className="object-cover"
             />
