@@ -4,7 +4,15 @@ import Image from 'next/image'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { FileText, Plus, Send, MapPin, Phone, Mail } from 'lucide-react'
+import {
+  FileText,
+  Plus,
+  Send,
+  MapPin,
+  Phone,
+  Mail,
+  Loader2,
+} from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -18,9 +26,11 @@ import { Textarea } from '@/components/ui/textarea'
 import formsBg from '@/assets/images/forms.png'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
+import { useState } from 'react'
 
 export function ContactSection() {
   const t = useTranslations('contact')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const formSchema = z.object({
     name: z.string().min(2, t('validation.nameMinLength')),
@@ -43,12 +53,38 @@ export function ContactSection() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log('Valores do formulário:', values)
-    toast.success(t('toast.title'), {
-      description: t('toast.description'),
-    })
-    form.reset()
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: values.name,
+          phone: values.phone,
+          email: values.email,
+          observation: values.observation,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Request failed')
+      }
+
+      toast.success(t('toast.title'), {
+        description: `${t('toast.description')} (${data.data.orderId})`,
+      })
+      form.reset()
+    } catch {
+      toast.error(t('toast.errorTitle'), {
+        description: t('toast.errorDescription'),
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const formatPhone = (value: string) => {
@@ -232,9 +268,19 @@ export function ContactSection() {
                 type="submit"
                 className="w-full h-12 text-base font-bold uppercase tracking-wide"
                 size="lg"
+                disabled={isSubmitting}
               >
-                {t('send')}
-                <Send className="ml-2 h-4 w-4" />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    {t('sending')}
+                  </>
+                ) : (
+                  <>
+                    {t('send')}
+                    <Send className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
             </form>
           </div>

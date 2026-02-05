@@ -96,6 +96,7 @@
     "observations": "Observações",
     "observationsPlaceholder": "Informações adicionais ou dúvidas sobre sua receita...",
     "send": "Enviar Pedido",
+    "sending": "Enviando...",
     "contactInfo": "Informações de Contato",
     "address": "Rua Exemplo, 123 - Centro",
     "city": "São Paulo - SP",
@@ -115,7 +116,9 @@
     "quote": "Comprometidos com a ética farmacêutica e a saúde de nossos pacientes.",
     "toast": {
       "title": "Pedido enviado com sucesso!",
-      "description": "Nossa equipe farmacêutica entrará em contato em breve."
+      "description": "Nossa equipe farmacêutica entrará em contato em breve.",
+      "errorTitle": "Erro ao enviar pedido",
+      "errorDescription": "Ocorreu um erro ao processar seu pedido. Tente novamente."
     }
   },
   "footer": {
