@@ -12,6 +12,9 @@ import {
   Phone,
   Mail,
   Loader2,
+  CheckCircle2,
+  ArrowLeft,
+  Sparkles,
 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -27,10 +30,13 @@ import formsBg from '@/assets/images/forms.png'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export function ContactSection() {
   const t = useTranslations('contact')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [orderId, setOrderId] = useState('')
 
   const formSchema = z.object({
     name: z.string().min(2, t('validation.nameMinLength')),
@@ -77,6 +83,8 @@ export function ContactSection() {
       toast.success(t('toast.title'), {
         description: `${t('toast.description')} (${data.data.orderId})`,
       })
+      setOrderId(data.data.orderId)
+      setIsSuccess(true)
       form.reset()
     } catch {
       toast.error(t('toast.errorTitle'), {
@@ -117,172 +125,290 @@ export function ContactSection() {
 
         <div className="bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden grid grid-cols-1 lg:grid-cols-12">
           <div className="lg:col-span-7 p-8 md:p-12 space-y-8">
-            <div className="flex items-center gap-2 mb-6">
-              <FileText className="text-primary h-5 w-5" />
-              <h3 className="font-bold text-xl text-foreground">
-                {t('orderData')}
-              </h3>
-            </div>
+            <AnimatePresence mode="wait">
+              {isSuccess ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  className="flex flex-col items-center justify-center text-center h-full min-h-125 space-y-6"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      delay: 0.2,
+                      type: 'spring',
+                      stiffness: 200,
+                      damping: 15,
+                    }}
+                    className="relative"
+                  >
+                    <div className="h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center">
+                      <CheckCircle2 className="h-12 w-12 text-primary" />
+                    </div>
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 0.3 }}
+                      className="absolute -top-1 -right-1 h-8 w-8 rounded-full bg-primary flex items-center justify-center"
+                    >
+                      <Sparkles className="h-4 w-4 text-white" />
+                    </motion.div>
+                  </motion.div>
 
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FieldGroup>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Nome */}
-                  <Controller
-                    name="name"
-                    control={form.control}
-                    render={({ field, fieldState }) => (
-                      <Field data-invalid={fieldState.invalid}>
-                        <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                          {t('fullName')}
-                        </FieldLabel>
-                        <Input
-                          {...field}
-                          placeholder={t('fullName')}
-                          className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="space-y-2"
+                  >
+                    <h3 className="text-2xl font-bold text-foreground">
+                      {t('success.title')}
+                    </h3>
+                    <p className="text-primary font-semibold text-lg">
+                      {t('success.subtitle')}
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="bg-[#F0FDF4] border border-primary/20 rounded-xl px-6 py-4 space-y-1"
+                  >
+                    <span className="text-xs font-bold text-primary/70 uppercase tracking-wide">
+                      {t('success.orderLabel')}
+                    </span>
+                    <p className="text-xl font-mono font-bold text-primary">
+                      {orderId}
+                    </p>
+                  </motion.div>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="text-muted-foreground text-sm max-w-sm leading-relaxed"
+                  >
+                    {t('success.description')}
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="bg-[#F9FAFB] rounded-lg px-4 py-3 flex items-center gap-2"
+                  >
+                    <Mail className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground">
+                      {t('success.tip')}
+                    </span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    <Button
+                      variant="outline"
+                      className="mt-2 gap-2 border-primary/30 text-primary hover:bg-primary/5"
+                      onClick={() => {
+                        setIsSuccess(false)
+                        setOrderId('')
+                      }}
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      {t('success.newOrder')}
+                    </Button>
+                  </motion.div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-8"
+                >
+                  <div className="flex items-center gap-2 mb-6">
+                    <FileText className="text-primary h-5 w-5" />
+                    <h3 className="font-bold text-xl text-foreground">
+                      {t('orderData')}
+                    </h3>
+                  </div>
+
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
+                    <FieldGroup>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Nome */}
+                        <Controller
+                          name="name"
+                          control={form.control}
+                          render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                              <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+                                {t('fullName')}
+                              </FieldLabel>
+                              <Input
+                                {...field}
+                                placeholder={t('fullName')}
+                                className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
+                              />
+                              {fieldState.error && (
+                                <FieldError errors={[fieldState.error]} />
+                              )}
+                            </Field>
+                          )}
                         />
-                        {fieldState.error && (
-                          <FieldError errors={[fieldState.error]} />
-                        )}
-                      </Field>
-                    )}
-                  />
 
-                  {/* Telefone */}
-                  <Controller
-                    name="phone"
-                    control={form.control}
-                    render={({ field, fieldState }) => (
-                      <Field data-invalid={fieldState.invalid}>
-                        <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                          {t('phone')}
-                        </FieldLabel>
-                        <Input
-                          {...field}
-                          placeholder="(00) 00000-0000"
-                          className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
-                          onChange={(e) => {
-                            const formatted = formatPhone(e.target.value)
-                            field.onChange(formatted)
-                          }}
-                          maxLength={15}
+                        {/* Telefone */}
+                        <Controller
+                          name="phone"
+                          control={form.control}
+                          render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                              <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+                                {t('phone')}
+                              </FieldLabel>
+                              <Input
+                                {...field}
+                                placeholder="(00) 00000-0000"
+                                className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
+                                onChange={(e) => {
+                                  const formatted = formatPhone(e.target.value)
+                                  field.onChange(formatted)
+                                }}
+                                maxLength={15}
+                              />
+                              {fieldState.error && (
+                                <FieldError errors={[fieldState.error]} />
+                              )}
+                            </Field>
+                          )}
                         />
-                        {fieldState.error && (
-                          <FieldError errors={[fieldState.error]} />
-                        )}
-                      </Field>
-                    )}
-                  />
-                </div>
-
-                {/* Email */}
-                <Controller
-                  name="email"
-                  control={form.control}
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                        {t('email')}
-                      </FieldLabel>
-                      <Input
-                        {...field}
-                        type="email"
-                        placeholder={t('email')}
-                        className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                      {fieldState.error && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
-                    </Field>
-                  )}
-                />
-
-                {/* Upload de Arquivos (Customizado) */}
-                <Controller
-                  name="files"
-                  control={form.control}
-                  render={({
-                    field: { value, onChange, ...fieldProps },
-                    fieldState,
-                  }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                        {t('attachFiles')}
-                      </FieldLabel>
-
-                      <div className="relative group">
-                        <Input
-                          {...fieldProps}
-                          type="file"
-                          multiple
-                          className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
-                          onChange={(e) => {
-                            onChange(e.target.files)
-                          }}
-                        />
-                        <div className="border-2 border-dashed border-gray-200 bg-[#F9FAFB] rounded-xl p-8 flex flex-col items-center justify-center text-center transition-colors group-hover:border-primary/50">
-                          <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                            <Plus className="h-5 w-5 text-primary" />
-                          </div>
-                          <span className="font-bold text-gray-700 text-sm">
-                            {value && value.length > 0
-                              ? t('filesSelected', { count: value.length })
-                              : t('addPrescriptions')}
-                          </span>
-                          <span className="text-xs text-gray-400 mt-1">
-                            {t('fileFormats')}
-                          </span>
-                        </div>
                       </div>
 
-                      {fieldState.error && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
-                    </Field>
-                  )}
-                />
-
-                {/* Observações */}
-                <Controller
-                  name="observation"
-                  control={form.control}
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                        {t('observations')}
-                      </FieldLabel>
-                      <Textarea
-                        {...field}
-                        placeholder={t('observationsPlaceholder')}
-                        className="bg-[#F9FAFB] border-none min-h-25 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                      {/* Email */}
+                      <Controller
+                        name="email"
+                        control={form.control}
+                        render={({ field, fieldState }) => (
+                          <Field data-invalid={fieldState.invalid}>
+                            <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+                              {t('email')}
+                            </FieldLabel>
+                            <Input
+                              {...field}
+                              type="email"
+                              placeholder={t('email')}
+                              className="bg-[#F9FAFB] border-none h-12 focus:outline-none focus:ring-2 focus:ring-primary"
+                            />
+                            {fieldState.error && (
+                              <FieldError errors={[fieldState.error]} />
+                            )}
+                          </Field>
+                        )}
                       />
-                      {fieldState.error && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
-                    </Field>
-                  )}
-                />
-              </FieldGroup>
 
-              <Button
-                type="submit"
-                className="w-full h-12 text-base font-bold uppercase tracking-wide"
-                size="lg"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {t('sending')}
-                  </>
-                ) : (
-                  <>
-                    {t('send')}
-                    <Send className="ml-2 h-4 w-4" />
-                  </>
-                )}
-              </Button>
-            </form>
+                      {/* Upload de Arquivos (Customizado) */}
+                      <Controller
+                        name="files"
+                        control={form.control}
+                        render={({
+                          field: { value, onChange, ...fieldProps },
+                          fieldState,
+                        }) => (
+                          <Field data-invalid={fieldState.invalid}>
+                            <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+                              {t('attachFiles')}
+                            </FieldLabel>
+
+                            <div className="relative group">
+                              <Input
+                                {...fieldProps}
+                                type="file"
+                                multiple
+                                className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
+                                onChange={(e) => {
+                                  onChange(e.target.files)
+                                }}
+                              />
+                              <div className="border-2 border-dashed border-gray-200 bg-[#F9FAFB] rounded-xl p-8 flex flex-col items-center justify-center text-center transition-colors group-hover:border-primary/50">
+                                <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                                  <Plus className="h-5 w-5 text-primary" />
+                                </div>
+                                <span className="font-bold text-gray-700 text-sm">
+                                  {value && value.length > 0
+                                    ? t('filesSelected', {
+                                        count: value.length,
+                                      })
+                                    : t('addPrescriptions')}
+                                </span>
+                                <span className="text-xs text-gray-400 mt-1">
+                                  {t('fileFormats')}
+                                </span>
+                              </div>
+                            </div>
+
+                            {fieldState.error && (
+                              <FieldError errors={[fieldState.error]} />
+                            )}
+                          </Field>
+                        )}
+                      />
+
+                      {/* Observações */}
+                      <Controller
+                        name="observation"
+                        control={form.control}
+                        render={({ field, fieldState }) => (
+                          <Field data-invalid={fieldState.invalid}>
+                            <FieldLabel className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+                              {t('observations')}
+                            </FieldLabel>
+                            <Textarea
+                              {...field}
+                              placeholder={t('observationsPlaceholder')}
+                              className="bg-[#F9FAFB] border-none min-h-25 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                            />
+                            {fieldState.error && (
+                              <FieldError errors={[fieldState.error]} />
+                            )}
+                          </Field>
+                        )}
+                      />
+                    </FieldGroup>
+
+                    <Button
+                      type="submit"
+                      className="w-full h-12 text-base font-bold uppercase tracking-wide"
+                      size="lg"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          {t('sending')}
+                        </>
+                      ) : (
+                        <>
+                          {t('send')}
+                          <Send className="ml-2 h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <div className="lg:col-span-5 relative bg-[#7C5A2B] text-white p-8 md:p-12 flex flex-col justify-center min-h-125">

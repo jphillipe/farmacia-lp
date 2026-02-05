@@ -119,6 +119,14 @@
       "description": "Nuestro equipo farmacéutico se pondrá en contacto pronto.",
       "errorTitle": "Error al enviar pedido",
       "errorDescription": "Ocurrió un error al procesar su pedido. Inténtelo de nuevo."
+    },
+    "success": {
+      "title": "¡Pedido Enviado!",
+      "subtitle": "Recibimos su presupuesto con éxito.",
+      "description": "Nuestro equipo farmacéutico analizará su solicitud y se pondrá en contacto en hasta 24 horas.",
+      "orderLabel": "Nº del Pedido",
+      "newOrder": "Enviar Nuevo Pedido",
+      "tip": "Esté atento a su correo electrónico y teléfono para actualizaciones."
     }
   },
   "footer": {
