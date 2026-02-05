@@ -2,6 +2,7 @@ import { Header } from '@/components/header'
 import { AboutSection } from '@/components/sections/about/about'
 import { Hero } from '@/components/sections/hero/hero'
 import { ProcessSection } from '@/components/sections/process/process'
+import { ProductsSection } from '@/components/sections/products/products'
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <section className="mx-auto">
           <AboutSection />
           <ProcessSection />
+          <ProductsSection />
         </section>
       </main>
     </div>
