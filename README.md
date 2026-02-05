@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://farmacia-lp.vercel.app/pt"><strong>🔗 Ver Deploy</strong></a>
+  <a href="https://farmacia-lp.vercel.app/pt" target="_blank"><strong>🔗 Ver Deploy</strong></a>
 </p>
 
 <p align="center">
